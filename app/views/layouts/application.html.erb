@@ -11,28 +11,107 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body class="bg-gray-200 relative h-screen overflow-x-hidden accent-indigo-600">
+  <body class="bg-gray-200 relative h-screen overflow-x-hidden">
 
-    <% flash.each do |type, message|%>
+    <% flash.each do |type, message| %>
       <% if type == "alert" %>
         <div class="bg-red-500">
-          <div class="container px-2 mx-auto py-4 text-white text-center font-medium font-sans">
-            <%= message%>
-          </div>
+          <div class="container px-2 mx-auto py-4 text-white text-center font-medium font-sans"><%= message %></div>
         </div>
       <% end %>
-
-      <% if type == "alert" %>
-        <div class="bg-red-500">
-          <div class="container px-2 mx-auto py-4 text-white text-center font-medium font-sans">
-            <%= message%>
-          </div>
+      <% if type == "notice" %>
+        <div class="bg-green-500">
+          <div class="container px-2 mx-auto py-4 text-white text-center font-medium font-sans"><%= message %></div>
         </div>
       <% end %>
+    <% end %>
 
-    <% end %> 
-    
-    <%= yield %>
-    
+    <nav class="bg-white py-2 border-b border-gray-400" role="navigation" aria-label="main navigation">
+
+      <div class="flex flex-wrap items-center justify-center lg:justify-start lg:content-center px-4 lg:px-6 lg:space-x-3 lg:py-0 py-3">
+
+          <%= link_to root_path, class:"leading-normal no-underline text-gray-800 my-2 md:my-0 hover:text-indigo-600 lg:w-auto w-full lg:text-left text-center" do %>
+            <h1 class="text-lg pr-2 uppercase font-bold">FoodLoverZ</h1>
+          <% end %> 
+
+          <div class="flex flex-wrap justify-start w-full lg:w-2/3 flex-1">
+
+            <div class="flex flex-wrap items-center lg:flex-1 lg:space-x-6 lg:w-auto     w-full">
+              <div class="lg:w-1/4 w-full lg:mb-0 mb-3">
+                <div class="relative">
+                  <select class="appearance-none py-3 px-4 pr-8 block w-full bg-gray-200 border border-gray-200 text-gray-700
+                    rounded leading-tight" id="community">
+                    <option>Mexican</option>
+                    <option>American</option>
+                    <option>Italian</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="lg:flex-1 lg:w-auto w-full lg:mb-0 mb-3">
+                <div class="relative">
+                  <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight pl-9" id="search" type="text" placeholder="Search restaurant's">
+                  <div class="pointer-events-none absolute inset-y-5 left-2 flex items-center">
+                    <%= render_svg "icons/search", styles:"stroke-current w-5 h-5 text-gray-700"%>
+                  </div>
+                </div>
+              </div>
+
+            </div> 
+          
+            <div class="lg:pl-6 flex flex-wrap items-center justify-end pt-4 lg:pt-0">
+              <div class="mr-3">
+
+                  <% if user_signed_in? %>
+                    <%= link_to new_review_path  do %>
+                      <%= render_svg 'icons/create' %>
+                  <% end %>
+
+                  <% else %>
+                    <%= link_to "Login", new_user_session_path, class:"font-semibold text-lg py-3 rounded cursor-pointr no-underline text-gray-800 border bordar-gray-400 hover:bg-gray-100 font-medium py-2 px-4 rounded text-sm mr-2" %>
+                    <%= link_to "Sign up", new_user_registration_path, class: "font-semibold text-lg py-3 rounded cursor-pointr no-underline bg-indigo-600 text-white hover:bg-indigo-700 font-medium py-2 px-4 rounded text-sm" %>
+                <% end %>
+              </div>
+                <% if user_signed_in? %>
+                  <div class="dropdown rounded bg-white border border-gray-400 text-gray-600 ml-1 hover:bg-gray-200">
+                    <div class="dropdown-content pt-2 pb-2 pl-3 pr-1">
+                      <%= link_to "#", class: "js-dropdown-user-target no-underline flex justify-between text-gray-700 uppercase text-xs tracking-wide items-center font-semibold" do %>
+                        <%= current_user.email %>
+                        <%= render_svg 'icons/chevron-down' %>
+                      <% end %>
+                      <ul>
+                        <li>
+                          <%= link_to "#", class:"hover:bg-indigo-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm" do%>
+                            <%= render_svg 'icons/user', styles:"w-5 h-5 fill-current text-gray-600 mr-3"%>
+                            My profile
+                          <% end %>
+                        </li>
+                        <li>
+                          <%= link_to edit_user_registration_path, class:"hover:bg-indigo-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm" do%>
+                            <%= render_svg 'icons/settings', styles:"w-5 h-5 fill-current text-gray-600 mr-3"%>
+                            Account settings
+                          <% end %>
+                        </li>
+                        <li>
+                          <%= button_to destroy_user_session_path, method: :delete, class:"hover:bg-indigo-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm" do%>
+                            <%= render_svg 'icons/signout', styles:"w-5 h-5 fill-current text-gray-600 mr-3"%>
+                            Sign Out
+                          <% end %>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                <% end %>
+
+              </div>
+            </div>
+          </div>
+
+      </div>
+    </nav>
+
+    <div class="container mx-auto py-6">
+      <%= yield %>
+    </div>
   </body>
 </html>
