@@ -1,32 +1,47 @@
-<div id="<%= dom_id review %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= review.title %>
-  </p>
+<li class="list-none" id="<%= dom_id review %>">
+  <div class="px-2 py-3 flex items-center flex-wrap">
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Rating:</strong>
-    <%= review.rating %>
-  </p>
+    <% if review.media.attached? %>
+      <div class="w-2/12">
+        <%= link_to review do %>
+          <% if review.media.video? %>
+           <%= video_tag review.media%>
+          <% else %>
+            <%= image_tag review.media, alt:"#", class: "" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Body:</strong>
-    <%= review.body %>
-  </p>
+    <div class="flex-1 <%= "pl-4" if review.media.attached?%>">
+      <h3 class="mb-1 flex flex-wrap items-center text-xl">
+        <%= link_to review.title, review, class: "no-underline font-semibold items-center text-xl hover:text-indigo-600" %>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Media:</strong>
-    <%= link_to review.media.filename, review.media if review.media.attached? %>
-  </p>
+      </h3>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= review.user_id %>
-  </p>
 
-  <% if action_name != "show" %>
-    <%= link_to "Show this review", review, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this review', edit_review_path(review), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
-</div>
+      <% if review.body? %>
+        <div class="text-base text-gray-700">
+          <%= truncate(review.body, length: 140) %>
+        </div>
+      <% end %>
+
+       <div class="flex flex-wrap items-center justify-between">
+        
+
+        <% if user_signed_in? && current_user.id == review.user_id %>
+          <div class="pt-4 flex flex-wrap items-center space-x-4">
+            <%= link_to edit_review_path(review), class: "no-underline" do %>
+              <%= render_svg "icons/edit", title: "Edit", styles: "fill-current text-gray-400 w-5 h-5 hover:text-indigo-600" %>
+            <% end %>
+
+            <%= button_to review_path(review), method: :delete, data: { confirm: "Are you sure you want to delete this submission?" },  class: "no-underline block mt-px" do %>
+              <%= render_svg "icons/delete", title: "Delete", styles: "fill-current text-gray-400 w-5 h-5 hover:text-indigo-600" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</li>
