@@ -5,6 +5,11 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="mb-6">
+      <%= f.label :username %>
+      <%= f.text_field :username, autofocus: true, class: "appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600 ring ring-transparent focus:ring-4 focus:ring-indigo-50" %>
+    </div>
+
+    <div class="mb-6">
       <%= f.label :email %>
       <%= f.email_field :email, autocomplete: "email", class: "appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600 ring ring-transparent focus:ring-4 focus:ring-indigo-50" %>
     </div>
