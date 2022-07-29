@@ -77,3 +77,5 @@ end
 
 gem "inline_svg", "~> 1.8"
 gem "tailwindcss-rails", "~> 2.0"
+
+gem "foreman", "~> 0.87.2"

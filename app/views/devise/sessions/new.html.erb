@@ -1,26 +1,31 @@
-<h2>Log in</h2>
+<% content_for :form_wrap do %>
+  <h2 class="text-3xl font-bold mb-6">Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
+    <div class="mb-6">
+      <%= f.label :email, class: "block uppercase tracking-wider text-xs text-gray-700 font-semibold mb-2" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600 ring ring-transparent focus:ring-4 focus:ring-indigo-50" %>
     </div>
+
+    <div class="mb-6">
+      <%= f.label :password, class: "block uppercase tracking-wider text-xs text-gray-700 font-semibold mb-2" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-indigo-600 ring ring-transparent focus:ring-4 focus:ring-indigo-50" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="mb-6 flex items-center">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me, class: "font-normal text-gray-800 normal-case mb-0 text-base ml-3" %>
+      </div>
+    <% end %>
+
+    <%= f.submit "Log in", class: "font-medium py-3 px-6 rounded cursor-pointer no-underline bg-indigo-600 text-white hover:bg-indigo-700 w-full" %>
+
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="my-6">
+    <%= render "devise/shared/links" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%= render "devise/shared/form_wrap" %>
