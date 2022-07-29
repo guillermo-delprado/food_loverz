@@ -22,3 +22,15 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## Run
+
+* Clonar repositorio
+
+* Ejecutar para instalar gemas: bundle install
+
+* Ejecutar para instalar dependencias: yarn install
+
+* Ejecutar rails db:create
+
+* Si no es la primera vez asegurarse de realizar las migraciones con: rails db:migrate
