@@ -18,8 +18,7 @@
         <%= link_to review.title, review, class: "no-underline font-semibold items-center text-xl hover:text-orange-600" %>
 
       </h3>
-
-
+  
       <% if review.body? %>
         <div class="text-base text-gray-700">
           <%= truncate(review.body, length: 140) %>

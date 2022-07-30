@@ -1,3 +1,4 @@
+<% content_for :primary_content do %>
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
     <% if notice.present? %>
@@ -5,17 +6,43 @@
     <% end %>
 
     <%= render @restaurant %>
-    
-    <%= link_to 'Back to restaurants', restaurants_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      
   
-    
-    <ul class="divide-y list-none">
+   
+  <ul class="divide-y list-none">
+    <p class="font-semibold">"<%=@restaurant.name%>" Reviews</p>
     <% @restaurant.reviews.each_with_index do |review, index| %>
       <%= inject_feed_ad(index) %>
       <%= render "reviews/review", review: review %>
     <% end %>
   </ul>
-
   
+
   </div>
 </div>
+<%end%>
+
+<% content_for :secondary_content, class:"flex justify-between" do%>
+  <div class="px-4 pt-4 pb-4">
+    <% if user_signed_in? %>
+      <h3 class="font-bold text-lg mb-4">Welcome, <%= current_user.username %></h3>
+
+      <%= link_to "Create review", new_review_path, class: "text-orange-600 underline mr-2" %>
+
+      <%= link_to "Create restaurant", new_restaurant_path, class: "text-orange-600 underline" %>
+
+    <% else %>
+      
+      <h3 class="font-bold text-lg mb-4">Explore</h3>
+        <%= link_to "Create review", new_review_path, class: "text-orange-600 underline mr-2" %>
+
+        <%= link_to "Create restaurant", new_restaurant_path, class: "text-orange-600 underline" %>
+    <% end %>
+
+  </div>
+  
+<% end %>
+
+
+
+<%= render "basic_layout"%>
