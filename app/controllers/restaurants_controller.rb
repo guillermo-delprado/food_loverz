@@ -4,7 +4,8 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants or /restaurants.json
   def index
-    @restaurants = Restaurant.all
+    @category_id = Category.find_by(name: params[:category]).id
+		@restaurants = Restaurant.where(:category_id => @category_id).order("created_at DESC")
   end
 
   # GET /restaurants/1 or /restaurants/1.json
@@ -14,10 +15,12 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/new
   def new
     @restaurant = Restaurant.new
+    @categories = Category.all.map{ |c| [c.name, c.id] }
   end
 
   # GET /restaurants/1/edit
   def edit
+    @categories = Category.all.map{ |c| [c.name, c.id] }
   end
 
   # POST /restaurants or /restaurants.json
@@ -66,6 +69,6 @@ class RestaurantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def restaurant_params
-      params.require(:restaurant).permit(:name, :address, :user_id)
+      params.require(:restaurant).permit(:name, :address, :user_id, :category_id)
     end
 end
