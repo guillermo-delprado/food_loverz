@@ -4,8 +4,12 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants or /restaurants.json
   def index
-    @category_id = Category.find_by(name: params[:category]).id
-		@restaurants = Restaurant.where(:category_id => @category_id).order("created_at DESC")
+    if params[:category].blank?
+			@restaurants = Restaurant.all.order("created_at DESC")
+		else
+			@category_id = Category.find_by(name: params[:category]).id
+			@restaurants = Restaurant.where(:category_id => @category_id).order("created_at DESC")
+		end
   end
 
   # GET /restaurants/1 or /restaurants/1.json
