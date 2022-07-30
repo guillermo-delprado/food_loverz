@@ -66,6 +66,6 @@ class ReviewsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def review_params
-      params.require(:review).permit(:title, :rating, :body, :media, :user_id)
+      params.require(:review).permit(:title, :rating, :body, :media,:restaurant_id, :user_id)
     end
 end
