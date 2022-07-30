@@ -30,7 +30,7 @@
 
       <div class="flex flex-wrap items-center justify-center lg:justify-start lg:content-center px-4 lg:px-6 lg:space-x-3 lg:py-0 py-3">
 
-          <%= link_to root_path, class:"leading-normal no-underline text-gray-800 my-2 md:my-0 hover:text-indigo-600 lg:w-auto w-full lg:text-left text-center" do %>
+          <%= link_to root_path, class:"leading-normal no-underline text-gray-800 my-2 md:my-0 hover:text-orange-600 lg:w-auto w-full lg:text-left text-center" do %>
             <h1 class="text-lg pr-2 uppercase font-bold">FoodLoverZ</h1>
           <% end %> 
 
@@ -69,7 +69,7 @@
 
                   <% else %>
                     <%= link_to "Login", new_user_session_path, class:"font-semibold text-lg py-3 rounded cursor-pointr no-underline text-gray-800 border bordar-gray-400 hover:bg-gray-100 font-medium py-2 px-4 rounded text-sm mr-2" %>
-                    <%= link_to "Sign up", new_user_registration_path, class: "font-semibold text-lg py-3 rounded cursor-pointr no-underline bg-indigo-600 text-white hover:bg-indigo-700 font-medium py-2 px-4 rounded text-sm" %>
+                    <%= link_to "Sign up", new_user_registration_path, class: "font-semibold text-lg py-3 rounded cursor-pointr no-underline bg-orange-600 text-white hover:bg-orange-700 font-medium py-2 px-4 rounded text-sm" %>
                 <% end %>
               </div>
                 <% if user_signed_in? %>
@@ -81,19 +81,19 @@
                       <% end %>
                       <ul>
                         <li>
-                          <%= link_to "#", class:"hover:bg-indigo-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm" do%>
+                          <%= link_to "#", class:"hover:bg-orange-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm" do%>
                             <%= render_svg 'icons/user', styles:"w-5 h-5 fill-current text-gray-600 mr-3"%>
                             My profile
                           <% end %>
                         </li>
                         <li>
-                          <%= link_to edit_user_registration_path, class:"hover:bg-indigo-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm" do%>
+                          <%= link_to edit_user_registration_path, class:"hover:bg-orange-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm" do%>
                             <%= render_svg 'icons/settings', styles:"w-5 h-5 fill-current text-gray-600 mr-3"%>
                             Account settings
                           <% end %>
                         </li>
                         <li>
-                          <%= button_to destroy_user_session_path, method: :delete, class:"hover:bg-indigo-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm" do%>
+                          <%= button_to destroy_user_session_path, method: :delete, class:"hover:bg-orange-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm" do%>
                             <%= render_svg 'icons/signout', styles:"w-5 h-5 fill-current text-gray-600 mr-3"%>
                             Sign Out
                           <% end %>
