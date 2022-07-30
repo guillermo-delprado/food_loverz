@@ -73,35 +73,37 @@
                 <% end %>
               </div>
                 <% if user_signed_in? %>
-                  <div class="dropdown rounded bg-white border border-gray-400 text-gray-600 ml-1 hover:bg-gray-200">
-                    <div class="dropdown-content pt-2 pb-2 pl-3 pr-1">
-                      <%= link_to "#", class: "js-dropdown-user-target no-underline flex justify-between text-gray-700 uppercase text-xs tracking-wide items-center font-semibold" do %>
-                        <%= current_user.email %>
-                        <%= render_svg 'icons/chevron-down' %>
-                      <% end %>
-                      <ul>
-                        <li>
-                          <%= link_to "#", class:"hover:bg-orange-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm" do%>
-                            <%= render_svg 'icons/user', styles:"w-5 h-5 fill-current text-gray-600 mr-3"%>
-                            My profile
-                          <% end %>
-                        </li>
-                        <li>
-                          <%= link_to edit_user_registration_path, class:"hover:bg-orange-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm" do%>
-                            <%= render_svg 'icons/settings', styles:"w-5 h-5 fill-current text-gray-600 mr-3"%>
-                            Account settings
-                          <% end %>
-                        </li>
-                        <li>
-                          <%= button_to destroy_user_session_path, method: :delete, class:"hover:bg-orange-600 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm" do%>
-                            <%= render_svg 'icons/signout', styles:"w-5 h-5 fill-current text-gray-600 mr-3"%>
-                            Sign Out
-                          <% end %>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+              <div data-controller="dropdown" class="rounded bg-white border border-gray-400 text-gray-600 ml-1 hover:bg-gray-100 py-0 px-4">
+
+                <%= link_to "#", class: "no-underline flex justify-between text-sm tracking-wide items-center font-semibold select-none py-3", data: { action: "click->dropdown#toggle click@window->dropdown#hide" } do %>
+                  <%= current_user.username ||= current_user.email  %>
+                  <%= render_svg "icons/chevron-down", styles: "ml-2 w-4 h-4 text-gray-600" %>
                 <% end %>
+                <div class="relative">
+                  <ul class="hidden absolute top-2 -right-4 bg-white min-w-[200px] border border-gray-400 rounded shadow-lg" data-dropdown-target="menu">
+                    <li>
+                      <%= link_to "#", class: "hover:bg-orange-50 hover:text-orange-600 text-gray-600 no-underline block py-3 px-4 flex items-center group rounded-t" do %>
+                        <%= render_svg "icons/user" ,styles: "w-5 h-5 fill-current group-hover:text-orange-600 text-gray-600 mr-3" %>
+                        My profile
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to edit_user_registration_path, class: "hover:bg-orange-50 hover:text-orange-600 text-gray-600 no-underline block py-3 px-4 flex items-center group" do %>
+                        <%= render_svg "icons/settings" ,styles: "w-5 h-5 fill-current text-gray-600 mr-3 group-hover:text-orange-600" %>
+                        Account settings
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= button_to destroy_user_session_path, method: :delete, class: "hover:bg-orange-50 hover:text-orange-600 text-gray-600 no-underline block py-3 px-4 flex items-center group w-full rounded-b" do %>
+                        <%= render_svg "icons/signout", styles: "w-5 h-5 fill-current text-gray-600 mr-3 group-hover:text-orange-600" %>
+                        Sign out
+                      <% end %>
+                    </li>
+                  </ul>
+
+                </div>
+              </div>
+            <% end %>
 
               </div>
             </div>
