@@ -18,8 +18,12 @@
             <%= image_tag restaurant.media, alt:"#", class: "mb-2" %>
           <% end %>
           <%= restaurant.name%>
+
+            <%= render_svg "icons/conversation", styles: "w-4 h-4 fill-current text-gray-400 group-hover:text-orange-600" %>
+            <p class="group-hover:text-orange-600"><%= pluralize(restaurant.reviews.size, 'reviews') %></p>
+   
       <% end %>	
-        
+      
 		<% end %>
 
 	</div>

@@ -1,4 +1,4 @@
-<li class="list-none" id="<%= dom_id review %>">
+<li class="list-none" id="<%= dom_id review%>">
   <div class="px-2 py-3 flex items-center flex-wrap">
 
     <% if review.media.attached? %>
@@ -18,14 +18,29 @@
         <%= link_to review.title, review, class: "no-underline font-semibold items-center text-xl hover:text-orange-600" %>
 
       </h3>
-  
+
+      <p class="font-mono text-sm text-gray-600 group hover:text-orange-600 mb-2">
+        Restaurant - <%= link_to review.restaurant.name, restaurant_path(review.restaurant), class: "group-hover:text-orange-600 font-semibold" %> -
+      </p>
+
       <% if review.body? %>
         <div class="text-base text-gray-700">
           <%= truncate(review.body, length: 140) %>
         </div>
       <% end %>
 
+      <p class="text-sm text-gray-600 mb-3">Posted by @<%= link_to review.user.username,review_path(review), class: "underline font-semibold" %> <%= time_ago_in_words(review.created_at) + " ago" %> </p>
+
+
+
        <div class="flex flex-wrap items-center justify-between">
+
+       <div class="mt-3 flex-1">
+          <%= link_to review_path(review, anchor: "comment_section"), class: "flex items-center space-x-3 group" do %>
+            <%= render_svg "icons/conversation", styles: "w-4 h-4 fill-current text-gray-400 group-hover:text-orange-600" %>
+            <p class="group-hover:text-orange-600"><%= pluralize(review.comments.size, 'comment') %></p>
+          <% end %>
+        </div>
         
 
         <% if user_signed_in? && current_user.id == review.user_id %>
@@ -40,6 +55,7 @@
           </div>
         <% end %>
       </div>
+
 
     </div>
   </div>
