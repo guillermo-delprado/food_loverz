@@ -1,0 +1,11 @@
+development:
+  cloud_name: "db6whmjyq"
+  api_key: "327557668336924"
+  api_secret: "3rFjDy8HFfTPyGoJAC6uxpvkfqw"
+  secure: true
+
+production:
+  cloud_name: "db6whmjyq"
+  api_key: "327557668336924"
+  api_secret: "3rFjDy8HFfTPyGoJAC6uxpvkfqw"
+  secure: true

@@ -2,6 +2,6 @@
   <%= render "comments/comment", comment: @comment %>
 <% end %>
 
-<%= turbo_stream.replace "#{dom_id(@submission)}_comments_form" do %>
+<%= turbo_stream.replace "#{dom_id(@review)}_comments_form" do %>
   <%= render "comments/form", comment: Comment.new %>
 <% end %>

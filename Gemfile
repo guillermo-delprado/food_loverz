@@ -3,6 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+gem 'cloudinary'
+
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3"
 
@@ -32,7 +37,7 @@ gem 'devise', '~> 4.8', '>= 4.8.1'
 gem "image_processing", ">= 1.2"
 
 # Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 4.0"
+gem "redis", "~> 4.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -66,6 +71,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem "letter_opener", "~> 1.8"
+  
 end
 
 group :test do
@@ -79,3 +86,5 @@ gem "inline_svg", "~> 1.8"
 gem "tailwindcss-rails", "~> 2.0"
 
 gem "foreman", "~> 0.87.2"
+
+gem "letter_opener", "~> 1.8", :group => :development

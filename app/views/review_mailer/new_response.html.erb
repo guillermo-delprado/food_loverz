@@ -1,0 +1,9 @@
+<h1>Review#new_response</h1>
+
+<p>Hey <%= @review.user.username %>,</p>
+
+<p>Your review <%= link_to @review.title, review_url(@review) %> received a response.</p>
+
+<p>New comment:</p>
+
+<div><%= @comment.comment %></div>

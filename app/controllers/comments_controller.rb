@@ -13,8 +13,9 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     respond_to do |format|
+      
       if @comment.save
-        send_comment_notification
+        ReviewMailer.with(comment: @comment, review: @review).new_response.deliver_now
         format.turbo_stream
         format.html { redirect_to review_path(@review), notice: "Comment created successfully" }
       else
