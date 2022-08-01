@@ -9,7 +9,7 @@
 
 10.times do
   category = Category.create!(
-  name: Faker::Restaurant.type,
+  name: Faker::Restaurant.unique.type,
 
 )
 end
