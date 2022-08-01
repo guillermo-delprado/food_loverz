@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_07_31_222146) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -47,8 +50,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_31_222146) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment"
-    t.integer "review_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "review_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["review_id"], name: "index_comments_on_review_id"
@@ -58,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_31_222146) do
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
     t.text "address"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"
@@ -70,10 +73,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_31_222146) do
     t.string "title"
     t.integer "rating"
     t.text "body"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "restaurant_id", null: false
+    t.bigint "restaurant_id", null: false
     t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end

@@ -10,7 +10,7 @@ class ReviewMailer < ApplicationMailer
     @comment = params[:comment]
     @review = params[:review]
 
-    mail to: @review.user.email, subject: "New reponse on #{@review.title} via webbit"
+    mail to: @review.user.email, subject: "New reponse on #{@review.title} via foodloverz"
  
   end
 end

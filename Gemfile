@@ -5,8 +5,9 @@ ruby "3.1.2"
 
 gem 'cloudinary'
 
-gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem "faker", "~> 2.19"
 
+gem 'sidekiq', '~> 6.5'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3"
@@ -14,8 +15,8 @@ gem "rails", "~> 7.0.3"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+# Use pg as the database for Active Record
+gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -88,3 +89,5 @@ gem "tailwindcss-rails", "~> 2.0"
 gem "foreman", "~> 0.87.2"
 
 gem "letter_opener", "~> 1.8", :group => :development
+
+gem "sidekiq", "~> 6.5"
