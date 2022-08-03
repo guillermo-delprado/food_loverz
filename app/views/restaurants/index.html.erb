@@ -13,7 +13,7 @@
 		<% @restaurants.each do |restaurant| %>
 			<%= link_to restaurant, class:"m-4 text-center font-semibold" do %>
           
-            <%= image_tag @restaurant.media, alt:"#", class: "mb-2" %>
+            <%= image_tag restaurant.media, alt:"#", class: "mb-2" %>
           
           <%= restaurant.name%>
 
