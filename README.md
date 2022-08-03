@@ -32,8 +32,9 @@ Se requiere un sistema que permita la creación de restaurantes, reviews, coment
 3. Instalar dependencias `yarn install`
 4. Crear la base de datos: `rails db:create db:migrate`
 5. [Obligatorio] Popular la base de datos con los datos de las categorias `rails db:seed`
-6. Prender el servidor de prueba `bin/dev`
-7. Abrir el navegador en `localhost:3000`
+6. Aplicar redis-server en una terminal
+7. Prender el servidor de prueba `bin/dev`
+8. Abrir el navegador en `localhost:3000`
 
 
 # Frontend
