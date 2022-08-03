@@ -12,11 +12,9 @@
     
 		<% @restaurants.each do |restaurant| %>
 			<%= link_to restaurant, class:"m-4 text-center font-semibold" do %>
-          <% if restaurant.media.video? %>
-           <%= video_tag restaurant.media%>
-          <% else %>
+          
             <%= image_tag restaurant.media, alt:"#", class: "mb-2" %>
-          <% end %>
+          
           <%= restaurant.name%>
 
             <%= render_svg "icons/conversation", styles: "w-4 h-4 fill-current text-gray-400 group-hover:text-orange-600" %>

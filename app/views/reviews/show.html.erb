@@ -4,11 +4,9 @@
     <% if @review.media %>
       <div class="w-2/12">
         <%= link_to @review do %>
-          <% if @review.media.video? %>
-           <%= video_tag @review.media%>
-          <% else %>
+          
             <%= image_tag @review.media, alt:"#", class: "" %>
-          <% end %>
+          
         <% end %>
       </div>
     <% end %>

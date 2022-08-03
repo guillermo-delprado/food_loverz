@@ -3,11 +3,9 @@
   <% if restaurant.media%>
       <div class="w-2/12">
         <%= link_to restaurant do %>
-          <% if restaurant.media.video? %>
-           <%= video_tag restaurant.media%>
-          <% else %>
+          
             <%= image_tag restaurant.media, alt:"#", class: "" %>
-          <% end %>
+          
         <% end %>
       </div>
     <% end %>
