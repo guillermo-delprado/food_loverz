@@ -1,7 +1,7 @@
 <% content_for :primary_content do %>
 
 
-  <% if reviews.any? %>
+  <% if reviews %>
     <h1 class="font-semibold">Reviews</h1>
   <div id="reviews">
     <ul class="divide-y list-none">
@@ -11,17 +11,7 @@
     </ul>
   </div>
 
-  <% else %>
-
-    <div class="p-10 text-center">
-      <div class="flex justify-center mb-3">
-        <%= render_svg "icons/empty" %>
-      </div>
-      <p class="mb-4">There are no reviews...</p>
-      <%= link_to "Create a new review", new_review_path, class: "btn btn-indigo" %>
-    </div>
-
-  <% end %>
+  
 <% end %>
   
 
